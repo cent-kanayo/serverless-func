@@ -2,7 +2,9 @@ const result = document.querySelector('.result');
 
 const fetchProducts = async () => {
   try {
-    const { data } = await axios.get('/api/2-basic-api');
+    const { data } = await axios.get(
+      'https://centserverless.netlify.app/.netlify/functions/2-basic-api'
+    );
     const products = data.map(
       (data) =>
         ` <article class="product">
