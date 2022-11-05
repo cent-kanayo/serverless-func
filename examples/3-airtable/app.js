@@ -1,12 +1,11 @@
 const result = document.querySelector('.result');
 const fetchProducts = async () => {
   try {
-    const { data } = await axios.get(
-      'https://centserverless.netlify.app/.netlify/functions/3-airtable'
-    );
+    const { data } = await axios.get('/api/3-airtable');
+    console.log(data);
     const products = data.map(
       (data) =>
-        ` <article class="product">
+        ` <a href='product.html?id=${data.id}' class="product">
                 <img
                     src=${data.url}
                     alt=${data.name}
@@ -15,7 +14,7 @@ const fetchProducts = async () => {
                     <h5>${data.name}</h5>
                     <h5 class="price">${data.price}</h5>
                 </div>
-        </article> `
+        </a> `
     );
     result.innerHTML = products.join('');
   } catch (error) {
